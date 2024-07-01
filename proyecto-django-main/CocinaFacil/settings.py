@@ -31,7 +31,7 @@ SECRET_KEY = config('SECRET_KEY', 'django-insecure-0+bdvnpfbs=m+c+f!=r54q*p_^ee+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -77,9 +77,11 @@ WSGI_APPLICATION = 'CocinaFacil.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default=os.getenv('DATABASE_URL')
     )
 }
 
